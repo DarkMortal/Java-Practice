@@ -6,3 +6,4 @@
 New things in Java 21
 - Default access specifier for all attributes and methods of a class is ```public```.
 - No need to specify the main method within a class that has the same name as the filename. 
+***
