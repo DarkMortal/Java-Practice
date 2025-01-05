@@ -3,6 +3,9 @@ import java.lang.reflect.*;
 // record is a new feature in Java 14. It is a class that is defined with a single line of code.
 // it gives us all the features of a class without writing all the boilerplate code. like getters, setters, equals, hashcode, etc.
 // attributes of a record are  immutable by default (private final) and cannot be changed even using reflection.
+// records are final by default, which means that they cannot be extended by any other class.
+// records can also not extend any other classes but they can implement interfaces.
+
 record Person(String name, int age) {
 
     // some input validation (optional)
