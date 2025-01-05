@@ -2,6 +2,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.ArrayList;
 
 public class Hashset1 {
 	public static void main(String args[]) {
@@ -45,6 +46,42 @@ public class Hashset1 {
 		
 		System.out.println("\n");
 		for (String fighters : warriors) System.out.println(fighters);
+
+		 // ArrayLists
+        ArrayList<String> heroes = new ArrayList<String>();
+        heroes.add("Goku");
+        heroes.add("Vegeta");
+        heroes.add("Gohan");
+        heroes.add("Piccolo");
+
+        System.out.println("\nArrayList elements:");
+        for (String hero : heroes) {
+            System.out.println(hero);
+        }
+
+        // Accessing elements
+        System.out.println("\nFirst hero: " + heroes.get(0));
+
+        // Modifying elements
+        heroes.set(1, "Trunks");
+        System.out.println("\nModified ArrayList elements:");
+        for (String hero : heroes) {
+            System.out.println(hero);
+        }
+
+        // Removing elements
+        heroes.remove(2);
+        System.out.println("\nArrayList elements after removal:");
+        for (String hero : heroes) {
+            System.out.println(hero);
+        }
+
+        // Checking if an element exists
+        if (heroes.contains("Goku")) {
+            System.out.println("\nGoku is in the list.");
+        } else {
+            System.out.println("\nGoku is not in the list.");
+        }
 	}
 }
 
@@ -76,4 +113,24 @@ Jiren
 Vegeta
 Broly
 
+ArrayList elements:
+Goku
+Vegeta
+Gohan
+Piccolo
+
+First hero: Goku
+
+Modified ArrayList elements:
+Goku
+Trunks
+Gohan
+Piccolo
+
+ArrayList elements after removal:
+Goku
+Trunks
+Piccolo
+
+Goku is in the list.
 */
