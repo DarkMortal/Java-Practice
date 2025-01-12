@@ -92,7 +92,7 @@ class MainTest {
         assertArrayEquals(new String[]{
                 "Order ID: 1 status updated to SHIPPED",
                 "Invalid status update", ""
-        }, Arrays.stream(outContent.toString(StandardCharsets.UTF_8).split("\r")).map(String::trim).toArray());
+        }, Arrays.stream(outContent.toString(StandardCharsets.UTF_8).trim().split("\r")).map(String::trim).toArray());
 
         order.addProduct(inventory.getProduct(1).orElse(product), 10);
         order.addProduct(inventory.getProduct(2).orElse(product), 30);
