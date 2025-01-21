@@ -4,9 +4,8 @@ import java.util.ArrayList;
 public interface Calculator <T extends Number> {
     default void printMatrix(ArrayList<ArrayList<T>> matrix){
         for (ArrayList<T> row : matrix){
-            for (T element : row){
+            for (T element : row)
                 System.out.print(element + " ");
-            }
             System.out.println();
         }
     }
