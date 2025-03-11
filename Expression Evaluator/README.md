@@ -21,7 +21,7 @@
   Evaluating : 2.5300000000000002 + 1.4
   Result: 3.93
   
-  Equation-3: x^2-2*x+1
+  Equation-3: x^2-2*x+1 where x = 3
   Evaluating : 3.0 ^ 2.0
   Evaluating : 2.0 * 3.0
   Evaluating : 9.0 - 6.0
