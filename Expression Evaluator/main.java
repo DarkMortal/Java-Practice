@@ -14,7 +14,7 @@ public class Main {
             System.out.println("Result: " + exp.evaluateEquation(equation1, 3, true));
             System.out.println("\nEquation-2: " + equation2);
             System.out.println("Result: " + exp.evaluateEquation(equation2, 3, true));
-            System.out.println("\nEquation-3: " + equation3);
+            System.out.println("\nEquation-3: " + equation3 + " where x = 3");
             System.out.println("Result: " + exp.evaluateEquation(equation3, 3, true));
         } catch(ArithmeticException e){
             System.out.println(e.getMessage());
