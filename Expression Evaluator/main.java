@@ -8,7 +8,7 @@ public class Main {
         }});
         String equation1 = "1.3+e^(2.3-1.2)-pi";
         String equation2 = "1.2+(4.5-2.2/0.5+(3.45-2.22))+3.5-2.1";
-        String equation3 = "x^2-2*x+1";
+        String equation3 = "3*x^2-2*x+1";
         try{
             System.out.println("Equation-1: " + equation1);
             System.out.println("Result: " + exp.evaluateEquation(equation1, 3, true));
