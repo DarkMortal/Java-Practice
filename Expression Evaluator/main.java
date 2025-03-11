@@ -12,9 +12,9 @@ public class Main {
         try{
             System.out.println("Equation-1: " + equation1);
             System.out.println("Result: " + exp.evaluateEquation(equation1, 3, true));
-            System.out.println("\nEquation-2:" + equation2);
+            System.out.println("\nEquation-2: " + equation2);
             System.out.println("Result: " + exp.evaluateEquation(equation2, 3, true));
-            System.out.println("\nEquation-3:" + equation3);
+            System.out.println("\nEquation-3: " + equation3);
             System.out.println("Result: " + exp.evaluateEquation(equation3, 3, true));
         } catch(ArithmeticException e){
             System.out.println(e.getMessage());
