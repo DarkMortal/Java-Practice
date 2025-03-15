@@ -9,6 +9,7 @@ public interface ComplexInterface {
     double arg();
     Complex conjugate();
     Complex pow(double power);
+    Complex pow(Complex power);
     Complex reciprocal();
     Complex exp();
     Complex sin();
