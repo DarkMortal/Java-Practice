@@ -30,6 +30,13 @@ public record Complex(double real, double imaginary) implements complex.ComplexI
         double argument = power * arg();
         return new Complex(modulus * Math.cos(argument), modulus * Math.sin(argument));
     }
+    public Complex pow(Complex power){
+        if(power.real == 0 && power.imaginary == 0)
+            return new Complex(1, 0);
+        if(power.imaginary == 0)
+            return this.pow(power.real);
+        return this.log(Math.E).multiply(power).exp();
+    }
     public Complex reciprocal(){
         double denominator = real * real + imaginary * imaginary;
         return new Complex(real / denominator, -imaginary / denominator);
@@ -48,14 +55,19 @@ public record Complex(double real, double imaginary) implements complex.ComplexI
         return new Complex(Math.log(mod()) / Math.log(base), arg() / Math.log(base));
     }
 
+    public String toString(int precision) {
+        if(real == 0.0 && imaginary == 0.0) return "0.00";
+        if(real == 0.0) return String.format("%." + precision + "fi", imaginary);
+        if(imaginary == 0.0) return String.format("%." + precision + "f", real);
+        if(imaginary == 1.0) return "(" + real + " + i)";
+        String real_part = String.format("%." + precision + "f", real);
+        String imaginary_part = imaginary < 0.0 ?
+                String.format("- %.2fi", -imaginary) : String.format("+ %." + precision + "fi", imaginary);
+        return "("+ real_part + " " + imaginary_part +")";
+    }
+
     @Override
     public String toString() {
-        if(real == 0 && imaginary == 0) return "0.00";
-        if(real == 0) return String.format("%.2fi", imaginary);
-        if(imaginary == 0) return String.format("%.2f", real);
-        String real_part = String.format("%.2f", real);
-        String imaginary_part = imaginary < 0 ?
-                String.format("- %.2fi", -imaginary) : String.format("+ %.2fi", imaginary);
-        return real_part + " " + imaginary_part;
+        return toString(2);
     }
 }
