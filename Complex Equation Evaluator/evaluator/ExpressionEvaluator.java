@@ -38,6 +38,7 @@ public class ExpressionEvaluator implements Evaluator {
 
     private Complex getOperand(StringBuilder sb) throws Exception {
         String variable = sb.toString().trim();
+        if(variable.isEmpty()) return new Complex(0.0, 0.0);
         if(variable.equals("pi")) return new Complex(Math.PI, 0.0);
         if(variable.equals("e")) return new Complex(Math.E, 0.0);
         if(variable.charAt(variable.length() - 1) == 'i'){
