@@ -33,6 +33,7 @@ public class ExpressionEvaluator implements Evaluator {
 
     private double getOperand(StringBuilder sb) throws Exception {
         String variable = sb.toString().trim();
+        if(variable.isEmpty()) return 0.0;
         if(variable.equals("pi")) return Math.PI;
         if(variable.equals("e")) return Math.E;
         try{
