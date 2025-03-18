@@ -31,9 +31,12 @@ public class ExpressionEvaluator implements Evaluator {
         }
     }
 
-    private double getOperand(StringBuilder sb) throws Exception {
+    private double getOperand(StringBuilder sb, char currentOperator) throws Exception {
         String variable = sb.toString().trim();
-        if(variable.isEmpty()) return 0.0;
+        if(variable.isEmpty()){
+            if(currentOperator == '-') return 0.0;
+            else throw new Exception("Invalid equation");
+        }
         if(variable.equals("pi")) return Math.PI;
         if(variable.equals("e")) return Math.E;
         try{
@@ -54,11 +57,11 @@ public class ExpressionEvaluator implements Evaluator {
 
             if(terminalSymbols.contains(c)){
                 operators.add(c);
-                operands.add(getOperand(sb));
+                operands.add(getOperand(sb), c);
                 sb = new StringBuilder();
             } else sb.append(c);
             if(i == equation.length() - 1)
-                operands.add(getOperand(sb));
+                operands.add(getOperand(sb), ' ');
 
             if(c == '('){
                 i++;
