@@ -17,8 +17,8 @@ public class ExpressionEvaluator implements Evaluator {
         this.variables = variables_;
     }
 
-    public Map<String, Complex> getVariables(){
-        return this.variables;
+    public Complex getVariable(String variable){
+        return this.variables.get(variable);
     }
 
     private Complex compute(Complex operand1, Complex operand2, char operator, boolean verbose) throws Exception{
