@@ -36,14 +36,16 @@ public class ExpressionEvaluator implements Evaluator {
         }
     }
 
-    private Complex getOperand(StringBuilder sb) throws Exception {
+    private Complex getOperand(StringBuilder sb, char currentOperator) throws Exception {
         String variable = sb.toString().trim();
-        if(variable.isEmpty()) return new Complex(0.0, 0.0);
+        if(variable.isEmpty()){
+            if(currentOperator == '-') return new Complex(0.0, 0.0);
+            else throw new Exception("Invalid equation");
+        }
         if(variable.equals("pi")) return new Complex(Math.PI, 0.0);
         if(variable.equals("e")) return new Complex(Math.E, 0.0);
         if(variable.charAt(variable.length() - 1) == 'i'){
             if(variable.length() == 1) return new Complex(0.0, 1.0);
-
             String t = variable.substring(0, variable.length() - 1);
             if(t.equals("pi")) return new Complex(0.0, Math.PI);
             if(t.equals("e")) return new Complex(0.0, Math.E);
@@ -67,11 +69,11 @@ public class ExpressionEvaluator implements Evaluator {
 
             if(terminalSymbols.contains(c)){
                 operators.add(c);
-                operands.add(getOperand(sb));
+                operands.add(getOperand(sb, c));
                 sb = new StringBuilder();
             } else sb.append(c);
             if(i == equation.length() - 1)
-                operands.add(getOperand(sb));
+                operands.add(getOperand(sb, ' '));
 
             if(c == '('){
                 i++;
@@ -83,7 +85,7 @@ public class ExpressionEvaluator implements Evaluator {
                     subEquation.append(equation.charAt(i));
                     i++;
                 }
-                if(verbose) System.out.println("SubEquation: " + subEquation.toString());
+                if(verbose) System.out.println("SubEquation: " + subEquation);
                 operands.add(
                    complexEvaluator(subEquation.toString(), verbose)
                 ); i++;
