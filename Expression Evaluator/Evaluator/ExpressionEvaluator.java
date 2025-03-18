@@ -16,6 +16,10 @@ public class ExpressionEvaluator implements Evaluator {
         this.variables = variables_;
     }
 
+    public double getVariable(String variable){
+        return this.variables.get(variable);
+    }
+
     private double compute(double operand1, double operand2, char operator, boolean verbose) throws Exception{
         if(verbose)
             System.out.println("Evaluating : " + operand1 + " " + operator + " " + operand2);
