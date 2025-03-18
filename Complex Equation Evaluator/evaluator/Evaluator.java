@@ -7,7 +7,7 @@ public interface Evaluator {
 
     // List of terminal symbols in decreasing order of precedence
     List<Character> terminalSymbols = new ArrayList<>(){{
-        add('^'); add('*'); add('/'); add('-'); add('+');
+        add('^'); add('/'); add('*'); add('-'); add('+');
     }};
 
     String evaluateEquation(String equation,int precision, boolean verbose) throws Exception;
