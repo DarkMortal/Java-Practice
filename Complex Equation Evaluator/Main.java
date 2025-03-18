@@ -17,7 +17,7 @@ public class Main {
             System.out.println("Result: " + exp.evaluateEquation(equation1, 3, true));
             System.out.println("\nEquation-2: " + equation2);
             System.out.println("Result: " + exp.evaluateEquation(equation2, 3, true));
-            System.out.println("\nEquation-3: " + equation3 + " where x = " + exp.getVariables().get("x"));
+            System.out.println("\nEquation-3: " + equation3 + " where x = " + exp.getVariable("x"));
             System.out.println("Result: " + exp.evaluateEquation(equation3, 3, true));
             System.out.println("\nEquation-4: " + equation4);
             System.out.println("Result: " + exp.evaluateEquation(equation4, 3, true));
