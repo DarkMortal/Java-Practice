@@ -8,7 +8,7 @@ public class Main {
             // fifth root of unity
             put("x", new Complex(Math.cos(2.0 * Math.PI / 5.0), Math.sin(2.0 * Math.PI / 5.0)));
         }});
-        String equation1 = "1.3+e^(2.3-1.2)-pi";
+        String equation1 = "-1.3+e^(2.3-1.2)-pi";
         String equation2 = "1.2+(4.5-2.2/0.5+(3.45-2.22))+3.5-2.1";
         String equation3 = "x^4+x^3+x^2+x+1";
         String equation4 = "(1+i)^(2-i)";
