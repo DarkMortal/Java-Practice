@@ -1,13 +1,14 @@
 # Output
 
 ```bash
-Equation-1: 1.3+e^(2.3-1.2)-pi
+Equation-1: -1.3+e^(2.3-1.2)-pi
 SubEquation: 2.3-1.2
 Evaluating : 2.30 - 1.20
 Evaluating : 2.72 ^ 1.10
+Evaluating : 0.00 - 1.30
 Evaluating : 3.00 - 3.14
-Evaluating : 1.30 + -0.14
-Result: 1.163
+Evaluating : -1.30 + -0.14
+Result: -1.437
 
 Equation-2: 1.2+(4.5-2.2/0.5+(3.45-2.22))+3.5-2.1
 SubEquation: 4.5-2.2/0.5+(3.45-2.22)
