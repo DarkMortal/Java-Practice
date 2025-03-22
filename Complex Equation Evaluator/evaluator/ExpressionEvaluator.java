@@ -36,12 +36,8 @@ public class ExpressionEvaluator implements Evaluator {
         }
     }
 
-    private Complex getOperand(StringBuilder sb, char currentOperator) throws Exception {
-        String variable = sb.toString().trim();
-        if(variable.isEmpty()){
-            if(currentOperator == '-') return new Complex(0.0, 0.0);
-            else throw new Exception("Invalid equation");
-        }
+    private Complex getOperand(String variable) throws Exception {
+        if(variable.isEmpty()) return  new Complex(0.0, 0.0);
         if(variable.equals("pi")) return new Complex(Math.PI, 0.0);
         if(variable.equals("e")) return new Complex(Math.E, 0.0);
         if(variable.charAt(variable.length() - 1) == 'i'){
@@ -64,16 +60,36 @@ public class ExpressionEvaluator implements Evaluator {
         List<Complex> operands = new ArrayList<>();
         List<Character> operators = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
+
+        boolean isCurrentOperandNegative = false;
+
         for(int i = 0; i < equation.length(); i++){
             char c = equation.charAt(i);
 
             if(terminalSymbols.contains(c)){
+                String variable = sb.toString().trim();
+
+                if(!variable.isEmpty()){
+                    operands.add(isCurrentOperandNegative ?
+                            getOperand(variable).multiply(-1.0) :
+                            getOperand(variable));
+                    sb = new StringBuilder();
+                    isCurrentOperandNegative = false;
+                }else{
+                    if(c == '-') isCurrentOperandNegative = true;
+                    else throw new Exception("Invalid equation");
+                    continue;
+                }
                 operators.add(c);
-                operands.add(getOperand(sb, c));
-                sb = new StringBuilder();
             } else sb.append(c);
-            if(i == equation.length() - 1)
-                operands.add(getOperand(sb, ' '));
+            if(i == equation.length() - 1) {
+                String variable = sb.toString().trim();
+                if(variable.isEmpty()) continue;
+                operands.add(isCurrentOperandNegative ?
+                        getOperand(variable).multiply(-1.0) :
+                        getOperand(variable));
+                isCurrentOperandNegative = false;
+            }
 
             if(c == '('){
                 i++;
@@ -87,11 +103,14 @@ public class ExpressionEvaluator implements Evaluator {
                 }
                 if(verbose) System.out.println("SubEquation: " + subEquation);
                 operands.add(
-                   complexEvaluator(subEquation.toString(), verbose)
+                   complexEvaluator(subEquation.toString(), verbose).multiply(
+                         isCurrentOperandNegative ? -1.0 : 1.0
+                   )
                 ); i++;
                 if(i < equation.length())
                     operators.add(equation.charAt(i));
                 sb = new StringBuilder();
+                isCurrentOperandNegative = false;
             }
         }
         // TODO: implement operator precedence

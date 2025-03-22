@@ -55,6 +55,10 @@ public record Complex(double real, double imaginary) implements complex.ComplexI
         return new Complex(Math.log(mod()) / Math.log(base), arg() / Math.log(base));
     }
 
+    public Complex multiply(double number){
+        return new Complex(this.real * number, this.imaginary * number);
+    }
+
     public String toString(int precision) {
         if(real == 0.0 && imaginary == 0.0) return "0.00";
         if(real == 0.0) return String.format("%." + precision + "fi", imaginary);

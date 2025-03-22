@@ -1,4 +1,4 @@
-package Evaluator;
+package evaluator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,6 +4,7 @@ public interface ComplexInterface {
     Complex add(Complex other);
     Complex subtract(Complex other);
     Complex multiply(Complex other);
+    Complex multiply(double number);
     Complex divide(Complex other);
     double mod();
     double arg();

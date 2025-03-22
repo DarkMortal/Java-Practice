@@ -1,4 +1,4 @@
-package Evaluator;
+package evaluator;
 
 import java.util.*;
 
@@ -35,12 +35,8 @@ public class ExpressionEvaluator implements Evaluator {
         }
     }
 
-    private double getOperand(StringBuilder sb, char currentOperator) throws Exception {
-        String variable = sb.toString().trim();
-        if(variable.isEmpty()){
-            if(currentOperator == '-') return 0.0;
-            else throw new Exception("Invalid equation");
-        }
+    private double getOperand(String variable) throws Exception {
+    	if(variable.isEmpty()) return 0.0;
         if(variable.equals("pi")) return Math.PI;
         if(variable.equals("e")) return Math.E;
         try{
@@ -56,16 +52,34 @@ public class ExpressionEvaluator implements Evaluator {
         List<Double> operands = new ArrayList<>();
         List<Character> operators = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
+        
+        boolean isCurrentOperandNegative = false;
+        
         for(int i = 0; i < equation.length(); i++){
             char c = equation.charAt(i);
 
             if(terminalSymbols.contains(c)){
+            	String variable = sb.toString().trim();
+            	
+            	if(!variable.isEmpty()){
+                    operands.add(isCurrentOperandNegative ?
+                        getOperand(variable) * -1.0 : getOperand(variable));
+                    sb = new StringBuilder();
+                    isCurrentOperandNegative = false;
+                }else{
+                    if(c == '-') isCurrentOperandNegative = true;
+                    else throw new Exception("Invalid equation");
+                    continue;
+                }
                 operators.add(c);
-                operands.add(getOperand(sb), c);
-                sb = new StringBuilder();
             } else sb.append(c);
-            if(i == equation.length() - 1)
-                operands.add(getOperand(sb), ' ');
+            if(i == equation.length() - 1) {
+                String variable = sb.toString().trim();
+                if(variable.isEmpty()) continue;
+                operands.add(isCurrentOperandNegative ?
+                	getOperand(variable) * -1.0 : getOperand(variable));
+                isCurrentOperandNegative = false;
+            }
 
             if(c == '('){
                 i++;
@@ -78,7 +92,10 @@ public class ExpressionEvaluator implements Evaluator {
                     i++;
                 }
                 if(verbose) System.out.println("SubEquation: " + subEquation.toString());
-                operands.add(evaluateEquation(subEquation.toString(), precision, verbose));
+                operands.add(
+                		(isCurrentOperandNegative ? -1.0 : 1.0) *
+                		evaluateEquation(subEquation.toString(), precision, verbose)
+                );
                 i++;
                 if(i < equation.length())
                     operators.add(equation.charAt(i));
